@@ -75,5 +75,4 @@ oot@dice-devops:/home/Repos/devopslive2.2# docker inspect devopslive22_default
     }
 ]
 
-
 ```
