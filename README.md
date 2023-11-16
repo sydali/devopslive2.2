@@ -9,6 +9,8 @@ ASsignment 2 Part 2
 ```
 
 
+#redis working
+
 root@dice-devops:/home/Repos/devopslive2.2# redis-cli
 127.0.0.1:6379> KEYS *
 1) "hits"
