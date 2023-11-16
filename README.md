@@ -86,7 +86,7 @@ oot@dice-devops:/home/Repos/devopslive2.2# docker inspect devopslive22_default
 ![image](https://github.com/sydali/devopslive2.2/assets/449393/a18132db-d5d8-4279-84c2-afab5f1cdbab)
 
 
-#docker scale
+# docker scale
 
 
 ```
