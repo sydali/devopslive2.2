@@ -151,6 +151,9 @@ root@dice-devops:/home/Repos/devopslive2.2#
 # compose for grifana+ promtheus
 
 
+
+```
+
 root@dice-devops:/home/monitor# cat compose.yaml
 version: '3'
 
@@ -209,4 +212,8 @@ services:
     
 ```
 
+
+
+
+![image](https://github.com/sydali/devopslive2.2/assets/449393/363eb15e-01ce-4bcd-89af-2e85340f05f5)
 
