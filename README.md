@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # devopslive2.1
 ASsignment 2 Part 1
 
@@ -190,3 +191,6 @@ root@dice-devops:/home/Repos/devopslive2.1#
 ```
 
 
+=======
+# devopslive2.2
+>>>>>>> 3fec9b9d516f9a99bd5b4071c19c842e7516cf74
