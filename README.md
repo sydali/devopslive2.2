@@ -112,4 +112,12 @@ flask                     flask run                        Up      0.0.0.0:8009-
 
 ```
 
+# Docker monitoring with prmothis +grifana 
 
+Live Url
+
+http://170.64.200.116:3000/?orgId=1
+loginn/pass =admin/admin
+
+tutorial at 
+https://dev.to/chinhh/server-monitoring-with-prometheus-and-grafana-266o
