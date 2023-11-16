@@ -18,3 +18,62 @@ root@dice-devops:/home/Repos/devopslive2.2# redis-cli
 root@dice-devops:/home/Repos/devopslive2.2#
 
 ```
+
+# Docker network link
+
+```
+
+
+oot@dice-devops:/home/Repos/devopslive2.2# docker inspect devopslive22_default
+[
+    {
+        "Name": "devopslive22_default",
+        "Id": "dab895b97936dffff1f79fc47163997d8a043bf48ed7079c8a6f0204aefe1b77",
+        "Created": "2023-11-16T10:07:35.860815113Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.28.0.0/16",
+                    "Gateway": "172.28.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "58bc4423259f1c3c0c98d85b70d5c3c57f9c6188b6b3f29dd2831dbc9237991b": {
+                "Name": "devopslive22-web-1",
+                "EndpointID": "48763565d06ffc85ad3a83ee35ee617ed5cb4bf56cc81e74a204a45e8c050b58",
+                "MacAddress": "02:42:ac:1c:00:02",
+                "IPv4Address": "172.28.0.2/16",
+                "IPv6Address": ""
+            },
+            "8bfbc2b672c3e8de5fd153bc3e2b6c9ecce56fa7c59214a7e6e72b71310dbb5f": {
+                "Name": "devopslive22-redis-1",
+                "EndpointID": "a59701a815227c596307ad0a7a3baf756ea2e29ef1a3f03f9ad2002a3776a5d0",
+                "MacAddress": "02:42:ac:1c:00:03",
+                "IPv4Address": "172.28.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {
+            "com.docker.compose.network": "default",
+            "com.docker.compose.project": "devopslive22",
+            "com.docker.compose.version": "2.3.3"
+        }
+    }
+]
+
+
+```
