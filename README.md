@@ -84,3 +84,32 @@ oot@dice-devops:/home/Repos/devopslive2.2# docker inspect devopslive22_default
 
 
 ![image](https://github.com/sydali/devopslive2.2/assets/449393/a18132db-d5d8-4279-84c2-afab5f1cdbab)
+
+
+#docker scale
+
+
+```
+root@dice-devops:/home/Repos/devopslive2.2# docker compose up -d --remove-orphans
+[+] Running 3/3
+ ⠿ Container redis                    Recreated                                                                                                                                                                                                          0.3s
+ ⠿ Container flask                    Running                                                                                                                                                                                                            0.0s
+ ⠿ Container devopslive22-database-3  Started                                                                                                                                                                                                            0.4s
+root@dice-devops:/home/Repos/devopslive2.2# docker-compose scale database=3
+WARNING: The scale command is deprecated. Use the up command with the --scale flag instead.
+Creating devopslive22_database_4 ... done
+Creating devopslive22_database_5 ... done
+root@dice-devops:/home/Repos/devopslive2.2# docker-compose ps --services
+web
+database
+root@dice-devops:/home/Repos/devopslive2.2#  docker-compose ps
+         Name                        Command               State                    Ports
+-----------------------------------------------------------------------------------------------------------
+devopslive22-database-3   docker-entrypoint.sh redis ...   Up      6379/tcp
+devopslive22_database_4   docker-entrypoint.sh redis ...   Up      6379/tcp
+devopslive22_database_5   docker-entrypoint.sh redis ...   Up      6379/tcp
+flask                     flask run                        Up      0.0.0.0:8009->5000/tcp,:::8009->5000/tcp
+
+```
+
+
