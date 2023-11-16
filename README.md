@@ -114,6 +114,9 @@ flask                     flask run                        Up      0.0.0.0:8009-
 
 # Docker monitoring with prmothis +grifana 
 
+
+
+
 Live Url
 
 http://170.64.200.116:3000/?orgId=1
@@ -121,3 +124,88 @@ loginn/pass =admin/admin
 
 tutorial at 
 https://dev.to/chinhh/server-monitoring-with-prometheus-and-grafana-266o
+
+
+```
+^CERRO[0049] got 3 SIGTERM/SIGINTs, forcing shutdown
+root@dice-devops:/home/monitor# docker compose up -d
+[+] Running 4/4
+ ⠿ Container grafana        Started                                                                                                                                                                                                                      1.8s
+ ⠿ Container node_exporter  Started                                                                                                                                                                                                                      1.8s
+ ⠿ Container cadvisor       Started                                                                                                                                                                                                                      1.7s
+ ⠿ Container prometheus     Started                                                                                                                                                                                                                      1.7s
+root@dice-devops:/home/monitor# cd ..
+root@dice-devops:/home# cd Repos
+root@dice-devops:/home/Repos# cd devopslive2.2
+root@dice-devops:/home/Repos/devopslive2.2# l
+Dockerfile  README.md  __pycache__/  app.py  docker-compose.yml  redis-data/  requirements.txt  test
+root@dice-devops:/home/Repos/devopslive2.2# docker compose up -d
+[+] Running 3/3
+ ⠿ Container flask                    Running                                                                                                                                                                                                            0.0s
+ ⠿ Container devopslive22_database_5  Recreated                                                                                                                                                                                                         10.5s
+ ⠿ Container devopslive22-database-5  Started                                                                                                                                                                                                            0.8s
+root@dice-devops:/home/Repos/devopslive2.2#
+
+```
+
+# compose for grifana+ promtheus
+
+
+root@dice-devops:/home/monitor# cat compose.yaml
+version: '3'
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /etc/prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    container_name: cadvisor
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    restart: unless-stopped```
+```
+
+
